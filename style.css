@@ -1,0 +1,89 @@
+/* 기본 */
+* { margin:0; padding:0; box-sizing:border-box; }
+html, body { height:100%; }
+:root { --nav-h: 64px; --vh: 1vh; }
+
+/* 원페이지 스크롤 스냅 */
+html, body {
+  scroll-behavior: smooth;                /* 링크 클릭 시 부드러운 스크롤 */
+}
+body {
+  height: calc(var(--vh) * 100);
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;          /* 살짝 스크롤해도 섹션에 딱 맞춤 */
+}
+
+/* 고정 네비게이션 */
+.nav {
+  position: fixed; top:0; left:0; right:0;
+  height: var(--nav-h);
+  backdrop-filter: blur(8px);
+  background: rgba(0,0,0,0.35);
+  z-index: 10;
+}
+.nav-inner {
+  max-width: 1000px; margin: 0 auto; height: 100%;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 20px;
+}
+.logo { color:#fff; font-weight:800; text-decoration:none; letter-spacing:1px; }
+.menu a {
+  color:#fff; text-decoration:none; margin-left:20px; font-weight:600; opacity:.9;
+}
+.menu a:hover { opacity:1; }
+
+/* 섹션 공통 */
+.section {
+  height: calc(100svh - 0px);            /* iOS 등에서 주소창 고려 */
+  min-height: calc(var(--vh) * 100);
+  scroll-snap-align: start;               /* 섹션 시작점에 스냅 */
+  position: relative;
+  padding-top: var(--nav-h);              /* 고정 네비 높이만큼 여백 */
+  scroll-margin-top: var(--nav-h);        /* 앵커 이동 시 가려지지 않도록 */
+  display:flex; align-items:center; justify-content:center;
+}
+
+/* 비디오 히어로 */
+.bg-video{
+  position: fixed; inset:0; width:100%; height:100%;
+  object-fit:cover; z-index:-1;
+}
+.overlay{
+  width:100%; text-align:center; color:#fff;
+  text-shadow: 0 10px 30px rgba(0,0,0,.8);
+  display:flex; flex-direction:column; gap:16px; align-items:center; justify-content:center;
+  padding-top: calc(var(--nav-h) + 40px);
+  background: linear-gradient(to bottom, rgba(0,0,0,.45) 0%, rgba(0,0,0,.45) 100%);
+}
+.overlay h1{ font-size: clamp(32px, 5vw, 56px); font-weight:900; }
+.overlay p{ font-size: clamp(16px, 2vw, 22px); opacity:.95; }
+.btn{
+  display:inline-block; padding:.85rem 1.4rem; border-radius:999px;
+  background:#ff0055; color:#fff; font-weight:800; text-decoration:none;
+  transition:.25s; box-shadow:0 8px 24px rgba(255,0,85,.35);
+}
+.btn:hover{ transform: translateY(-1px); }
+
+/* 콘텐츠 섹션 스타일 */
+.section-content { background:#0f0f12; color:#eaeaea; }
+.section-alt { background:#121317; color:#eaeaea; }
+
+.container{
+  max-width: 900px; padding: 40px 20px; text-align:center;
+  margin-top:-40px; /* 히어로 대비 중앙 배치 보정 */
+}
+h2{ font-size: clamp(28px, 4vw, 44px); margin-bottom:16px; }
+p{ opacity:.9; line-height:1.6; }
+
+.reviews { list-style:none; display:grid; gap:10px; margin-top:10px; }
+.reviews li { background:rgba(255,255,255,.06); padding:14px 16px; border-radius:12px; }
+
+/* 폼 */
+.quote-form{
+  display:grid; gap:12px; margin-top:16px;
+}
+.quote-form input, .quote-form textarea{
+  width:100%; padding:12px 14px; border-radius:10px; border:none;
+  background:#1b1d24; color:#eaeaea; outline:none;
+}
+.quote-form textarea{ min-height:120px; resize:vertical; }
