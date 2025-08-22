@@ -13,6 +13,9 @@
   <header class="nav">
     <div class="nav-inner">
       <a href="#hero" class="logo">ALRD1</a>
+      <button class="menu-toggle" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
       <nav class="menu">
         <a href="#hero">Home</a>
         <a href="#about">About Us</a>
@@ -163,10 +166,10 @@
       <h2>Contact</h2>
       <p>Thanks for reaching out! We’ll get back to you shortly.</p>
       <div class="socials">
-        <a href="https://instagram.com/" target="_blank" class="social"><i class="fab fa-instagram"></i> Instagram</a>
-        <a href="https://tiktok.com/"     target="_blank" class="social"><i class="fab fa-tiktok"></i> TikTok</a>
+        <a href="https://www.instagram.com/alrd1_?igsh=MTU4aXpvMXV3bXBoeg==" target="_blank" class="social"><i class="fab fa-instagram"></i> Instagram</a>
+        <a href="https://tiktok.com/@alrd1__"     target="_blank" class="social"><i class="fab fa-tiktok"></i> TikTok</a>
       </div>
-      <p>Email: <a href="mailto:book@alrd1.com">alrd1team@gmail.com</a></p>
+      <p>Email: <a href="mailto:alrd1team@gmail.com">alrd1team@gmail.com</a></p>
     </div>
   </section>
 
@@ -176,6 +179,14 @@
       document.documentElement.style.setProperty('--vh', window.innerHeight * 0.01 + 'px');
     };
     setVH(); window.addEventListener('resize', setVH);
+
+    // Mobile menu toggle
+    const toggleBtn = document.querySelector('.menu-toggle');
+    const menu = document.querySelector('.menu');
+    toggleBtn.addEventListener('click', () => {
+      const open = menu.classList.toggle('open');
+      toggleBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
 
     // Event Type Other 토글
     const eventType = document.getElementById('eventType');

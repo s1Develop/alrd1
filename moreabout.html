@@ -10,6 +10,9 @@
   <header class="nav">
     <div class="nav-inner">
       <a href="index.html#hero" class="logo">ALRD1</a>
+      <button class="menu-toggle" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
       <nav class="menu">
         <a href="index.html#hero">Home</a>
         <a href="index.html#about">About Us</a>
@@ -28,5 +31,16 @@
       <a href="index.html#quotes" class="btn">Get A Quote Now</a>
     </div>
   </section>
+  <script>
+    // Mobile menu toggle (More About page)
+    const toggleBtn = document.querySelector('.menu-toggle');
+    const menu = document.querySelector('.menu');
+    if(toggleBtn && menu){
+      toggleBtn.addEventListener('click', () => {
+        const open = menu.classList.toggle('open');
+        toggleBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+    }
+  </script>
 </body>
 </html>
