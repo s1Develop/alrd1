@@ -77,22 +77,23 @@
       <h2>Get A Quote</h2>
       <p>Tell us the date, location, vibe, and guest count. We’ll tailor the set & pricing.</p>
 
-      <!-- 아래 YOUR_ID를 Formspree ID로 교체 -->
-      <form class="quote-form" action="https://formspree.io/f/YOUR_ID" method="POST">
+      <form class="quote-form" action="https://formsubmit.co/alrd1team@gmail.com" method="POST">
         <input type="hidden" name="_subject" value="New Quote Request from ALRD1" />
+        <input type="hidden" name="_captcha" value="false" />
 
         <!-- 기본 정보 -->
         <input type="text"   name="name"     placeholder="Name" required />
         <input type="email"  name="email"    placeholder="Email" required />
-        <input type="tel"    name="phone"    placeholder="Phone Number" />
-        <input type="text"   name="location" placeholder="Location of Event" />
-        <input type="date"   name="date"     placeholder="Date of Event" />
+        <input type="tel"    name="phone"    placeholder="Phone Number" required />
+        <input type="text"   name="location" placeholder="Location of Event" required />
+        <input type="text"   name="postal_code" placeholder="Postal Code" required />
+        <input type="date"   name="date"     placeholder="Date of Event" required />
 
         <!-- 이벤트 시간 -->
         <label class="field-label">Event Time</label>
         <div class="time-row">
           <span>Start:</span>
-          <select name="start_hour">
+          <select name="start_hour" required>
             <option value="">HH</option>
             <option>00</option><option>01</option><option>02</option><option>03</option>
             <option>04</option><option>05</option><option>06</option><option>07</option>
@@ -101,7 +102,7 @@
             <option>16</option><option>17</option><option>18</option><option>19</option>
             <option>20</option><option>21</option><option>22</option><option>23</option>
           </select>
-          <select name="start_minute">
+          <select name="start_minute" required>
             <option value="">MM</option>
             <option>00</option><option>15</option><option>30</option><option>45</option>
           </select>
@@ -109,7 +110,7 @@
 
         <div class="time-row">
           <span>End:</span>
-          <select name="end_hour">
+          <select name="end_hour" required>
             <option value="">HH</option>
             <option>00</option><option>01</option><option>02</option><option>03</option>
             <option>04</option><option>05</option><option>06</option><option>07</option>
@@ -118,17 +119,17 @@
             <option>16</option><option>17</option><option>18</option><option>19</option>
             <option>20</option><option>21</option><option>22</option><option>23</option>
           </select>
-          <select name="end_minute">
+          <select name="end_minute" required>
             <option value="">MM</option>
             <option>00</option><option>15</option><option>30</option><option>45</option>
           </select>
         </div>
 
         <!-- 규모/타입 -->
-        <input type="text" name="guests" placeholder="Approx. Guest Count / Event Size" />
+        <input type="text" name="guests" placeholder="Approx. Guest Count / Event Size" required />
 
         <label class="field-label">Event Type</label>
-        <select id="eventType" name="event_type">
+        <select id="eventType" name="event_type" required>
           <option value="">Select</option>
           <option>Wedding</option>
           <option>Pop-up</option>
@@ -143,7 +144,7 @@
         <!-- 파트 선택 -->
         <label class="field-label">What parts do you need a DJ for?</label>
         <div class="checks">
-          <label><input type="checkbox" name="parts" value="Ceremony" /> Ceremony</label>
+          <label><input type="checkbox" name="parts" value="Ceremony" required /> Ceremony</label>
           <label><input type="checkbox" name="parts" value="Cocktail Hours" /> Cocktail Hours</label>
           <label><input type="checkbox" name="parts" value="Reception" /> Reception</label>
           <label><input type="checkbox" name="parts" value="Dance Floor" /> Dance Floor</label>
@@ -187,15 +188,100 @@
     // Event Type Other 토글
     const eventType = document.getElementById('eventType');
     const eventTypeOther = document.getElementById('eventTypeOther');
-    eventType.addEventListener('change', () => {
-      eventTypeOther.style.display = eventType.value === 'other' ? 'block' : 'none';
-    });
+    const updateEventTypeOther = () => {
+      const isOther = eventType.value === 'other';
+      eventTypeOther.style.display = isOther ? 'block' : 'none';
+      eventTypeOther.required = isOther;
+    };
+    updateEventTypeOther();
+    eventType.addEventListener('change', updateEventTypeOther);
 
     // Parts Other 토글
     const otherCheck = document.getElementById('otherCheck');
     const otherText = document.getElementById('otherText');
-    otherCheck.addEventListener('change', () => {
-      otherText.style.display = otherCheck.checked ? 'block' : 'none';
+    const updateOtherText = () => {
+      const show = otherCheck.checked;
+      otherText.style.display = show ? 'block' : 'none';
+      otherText.required = show;
+    };
+    updateOtherText();
+    otherCheck.addEventListener('change', updateOtherText);
+
+    // 최소 하나의 parts 선택 검사 + 폼 에러 하이라이트
+    const quoteForm = document.querySelector('.quote-form');
+
+    const showError = (el, msg) => {
+      el.classList.add('field-error');
+      let msgEl = el.parentElement.querySelector('.error-text');
+      if(!msgEl){
+        msgEl = document.createElement('div');
+        msgEl.className = 'error-text';
+        el.parentElement.appendChild(msgEl);
+      }
+      msgEl.textContent = msg;
+    };
+
+    const clearError = (el) => {
+      el.classList.remove('field-error');
+      const msgEl = el.parentElement.querySelector('.error-text');
+      if(msgEl){ msgEl.remove(); }
+    };
+
+    // 입력 변경 시 에러 제거
+    quoteForm.querySelectorAll('input, select, textarea').forEach((el) => {
+      el.addEventListener('input', () => clearError(el));
+      el.addEventListener('change', () => clearError(el));
+    });
+
+    quoteForm.addEventListener('submit', (e) => {
+      let valid = true;
+
+      // required 기본 필드
+      const requiredSelectors = [
+        'input[name="name"]',
+        'input[name="email"]',
+        'input[name="phone"]',
+        'input[name="location"]',
+        'input[name="postal_code"]',
+        'input[name="date"]',
+        'select[name="start_hour"]',
+        'select[name="start_minute"]',
+        'select[name="end_hour"]',
+        'select[name="end_minute"]',
+        'input[name="guests"]',
+        'select[name="event_type"]'
+      ];
+
+      requiredSelectors.forEach((sel) => {
+        const el = quoteForm.querySelector(sel);
+        if(el && !el.value){
+          valid = false;
+          showError(el, 'This field is required.');
+        }
+      });
+
+      // Event Type Other
+      if(eventType.value === 'other' && !eventTypeOther.value){
+        valid = false;
+        showError(eventTypeOther, 'Please specify the event type.');
+      }
+
+      // Parts 최소 1개
+      const checkedParts = quoteForm.querySelectorAll('input[name="parts"]:checked');
+      if(checkedParts.length === 0){
+        valid = false;
+        // 첫 번째 파트 요소에 에러 표시
+        const firstPart = quoteForm.querySelector('input[name="parts"]');
+        if(firstPart){ showError(firstPart, 'Select at least one part.'); }
+      }
+
+      // Parts Other
+      if(otherCheck.checked && !otherText.value){
+        valid = false;
+        showError(otherText, 'Please specify other parts.');
+      }
+
+      if(!valid){ e.preventDefault(); }
     });
   </script>
 </body>

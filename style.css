@@ -70,6 +70,10 @@ select{width:100%;padding:12px 14px;border-radius:10px;border:none;background:#1
 .checks label{background:#1b1d24;padding:8px 10px;border-radius:8px;}
 .time-row{display:grid;grid-template-columns:auto 1fr auto 1fr;gap:10px;align-items:center;}
 
+/* 에러 표시 */
+.field-error{border:1px solid #ff4d4f !important;}
+.error-text{color:#ff4d4f;font-size:13px;margin-top:6px;text-align:left;}
+
 /* Contact */
 .socials{display:flex;gap:16px;justify-content:center;margin-top:12px;}
 .social{display:flex;align-items:center;gap:8px;color:#eaeaea;text-decoration:none;background:#1b1d24;padding:10px 14px;border-radius:999px;}
