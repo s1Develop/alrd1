@@ -8,7 +8,7 @@ html,body{
 }
 body{
   overflow-y:scroll;
-  scroll-snap-type:y proximity; /* mandatory → proximity */
+  scroll-snap-type:y proximity; /* desktop/tablet only; disabled on mobile below */
 }
 
 /* 네비 */
@@ -84,6 +84,12 @@ select{width:100%;padding:12px 14px;border-radius:10px;border:none;background:#1
   .section.hero{min-height:100dvh;}
 }
 
+/* 주소창 변화에도 흔들리지 않도록 더 안정적인 높이 사용 */
+@supports (height:100svh){
+  .section{min-height:100svh;}
+  .section.hero{min-height:100svh;}
+}
+
 /* 폼 같은 콘텐츠가 잘리지 않도록 여백 */
 .section-content .container,
 .section-alt .container{
@@ -92,6 +98,9 @@ select{width:100%;padding:12px 14px;border-radius:10px;border:none;background:#1
 
 /* 반응형 */
 @media (max-width: 768px){
+  /* 모바일에서 스냅 비활성화 → 드래그 후 덜컥 방지 */
+  body{scroll-snap-type:none;}
+
   .menu-toggle{display:block;}
   .menu{position:absolute;top:var(--nav-h);left:0;right:0;background:rgba(0,0,0,.9);display:none;flex-direction:column;gap:0;padding:8px 0;}
   .menu.open{display:flex;}

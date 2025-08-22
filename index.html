@@ -174,11 +174,7 @@
   </section>
 
   <script>
-    // iOS 100vh 보정
-    const setVH = () => {
-      document.documentElement.style.setProperty('--vh', window.innerHeight * 0.01 + 'px');
-    };
-    setVH(); window.addEventListener('resize', setVH);
+    // 더 이상 수동 100vh 보정 사용하지 않음 (100svh/100dvh로 대체)
 
     // Mobile menu toggle
     const toggleBtn = document.querySelector('.menu-toggle');
