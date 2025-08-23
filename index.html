@@ -144,7 +144,7 @@
         <!-- 파트 선택 -->
         <label class="field-label">What parts do you need a DJ for?</label>
         <div class="checks">
-          <label><input type="checkbox" name="parts" value="Ceremony" required /> Ceremony</label>
+          <label><input type="checkbox" name="parts" value="Ceremony" /> Ceremony</label>
           <label><input type="checkbox" name="parts" value="Cocktail Hours" /> Cocktail Hours</label>
           <label><input type="checkbox" name="parts" value="Reception" /> Reception</label>
           <label><input type="checkbox" name="parts" value="Dance Floor" /> Dance Floor</label>
@@ -270,9 +270,17 @@
       const checkedParts = quoteForm.querySelectorAll('input[name="parts"]:checked');
       if(checkedParts.length === 0){
         valid = false;
-        // 첫 번째 파트 요소에 에러 표시
-        const firstPart = quoteForm.querySelector('input[name="parts"]');
-        if(firstPart){ showError(firstPart, 'Select at least one part.'); }
+        // Parts 섹션 전체에 에러 메시지 표시
+        const partsSection = quoteForm.querySelector('.checks');
+        if(partsSection){
+          let msgEl = partsSection.parentElement.querySelector('.error-text');
+          if(!msgEl){
+            msgEl = document.createElement('div');
+            msgEl.className = 'error-text';
+            partsSection.parentElement.appendChild(msgEl);
+          }
+          msgEl.textContent = 'Please select at least one part for DJ service.';
+        }
       }
 
       // Parts Other
@@ -282,6 +290,20 @@
       }
 
       if(!valid){ e.preventDefault(); }
+    });
+
+    // Parts 체크박스 변경 시 에러 메시지 제거
+    quoteForm.querySelectorAll('input[name="parts"]').forEach((checkbox) => {
+      checkbox.addEventListener('change', () => {
+        const checkedParts = quoteForm.querySelectorAll('input[name="parts"]:checked');
+        if(checkedParts.length > 0){
+          const partsSection = quoteForm.querySelector('.checks');
+          if(partsSection){
+            const msgEl = partsSection.parentElement.querySelector('.error-text');
+            if(msgEl){ msgEl.remove(); }
+          }
+        }
+      });
     });
   </script>
 </body>
