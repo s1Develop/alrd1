@@ -36,15 +36,19 @@
   <!-- HERO -->
   <section id="hero" class="section hero">
     <video
-      class="bg-video"
-      autoplay muted loop playsinline webkit-playsinline
+      class="bg-video auto-video"
+      playsinline webkit-playsinline autoplay muted loop
       preload="metadata"
       poster="./assets/posters/hero.jpg"
+      data-mp4="./assets/videos/background.mp4"
+      data-webm="./assets/videos/background.webm"
     >
-      <!-- (선택) webm 소스: 있으면 유지, 없으면 이 줄 삭제 -->
       <source src="./assets/videos/background.webm" type="video/webm"/>
       <source src="./assets/videos/background.mp4"  type="video/mp4"/>
     </video>
+    <noscript>
+      <img src="./assets/posters/hero.jpg" alt="ALRD1" style="width:100%;height:auto;">
+    </noscript>
     <div class="overlay">
       <h1>Welcome to ALRD1</h1>
       <p>You Already Won. The Beat Starts Here 🎧</p>
@@ -57,10 +61,12 @@
     <!-- Video Section 1 -->
     <div class="video-section">
       <video
-        class="bg-video"
-        autoplay muted loop playsinline webkit-playsinline
+        class="bg-video auto-video"
+        playsinline webkit-playsinline autoplay muted loop
         preload="metadata"
         poster="./assets/posters/aboutme1.jpg"
+        data-mp4="./assets/videos/aboutme1.mp4"
+        data-webm="./assets/videos/aboutme1.webm"
       >
         <source src="./assets/videos/aboutme1.webm" type="video/webm"/>
         <source src="./assets/videos/aboutme1.mp4"  type="video/mp4"/>
@@ -76,10 +82,12 @@
     <!-- Video Section 2 -->
     <div class="video-section">
       <video
-        class="bg-video"
-        autoplay muted loop playsinline webkit-playsinline
+        class="bg-video auto-video"
+        playsinline webkit-playsinline autoplay muted loop
         preload="metadata"
         poster="./assets/posters/aboutme2.jpg"
+        data-mp4="./assets/videos/aboutme2.mp4"
+        data-webm="./assets/videos/aboutme2.webm"
       >
         <source src="./assets/videos/aboutme2.webm" type="video/webm"/>
         <source src="./assets/videos/aboutme2.mp4"  type="video/mp4"/>
@@ -95,10 +103,12 @@
     <!-- Video Section 3 -->
     <div class="video-section">
       <video
-        class="bg-video"
-        autoplay muted loop playsinline webkit-playsinline
+        class="bg-video auto-video"
+        playsinline webkit-playsinline autoplay muted loop
         preload="metadata"
         poster="./assets/posters/aboutme3.jpg"
+        data-mp4="./assets/videos/aboutme3.mp4"
+        data-webm="./assets/videos/aboutme3.webm"
       >
         <source src="./assets/videos/aboutme3.webm" type="video/webm"/>
         <source src="./assets/videos/aboutme3.mp4"  type="video/mp4"/>
@@ -115,10 +125,12 @@
   <!-- ABOUT -->
   <section id="about" class="section section-content about-hero">
     <video
-      class="bg-video"
-      autoplay muted loop playsinline webkit-playsinline
+      class="bg-video auto-video"
+      playsinline webkit-playsinline autoplay muted loop
       preload="metadata"
       poster="./assets/posters/about-hero.jpg"
+      data-mp4="./assets/videos/20250816_220659_2_1.mp4"
+      data-webm="./assets/videos/20250816_220659_2_1.webm"
     >
       <source src="./assets/videos/20250816_220659_2_1.webm" type="video/webm"/>
       <source src="./assets/videos/20250816_220659_2_1.mp4"  type="video/mp4"/>
@@ -239,40 +251,59 @@
   </section>
 
   <script>
-    // ======= Video autoplay hardening (모바일/정책 이슈 대비) =======
+    // ======= Video autoplay hardening + lazy observe =======
     (function () {
-      const vids = document.querySelectorAll('video.bg-video');
+      const vids = Array.from(document.querySelectorAll('video.auto-video'));
 
-      function armVideo(v) {
-        // 자동재생 허용 조건을 먼저 명시적으로 셋
+      function prepare(v){
         v.muted = true;
-        v.setAttribute('muted', '');
-        v.setAttribute('playsinline', '');
-        v.setAttribute('webkit-playsinline', '');
-
-        const tryPlay = () => v.play().catch(() => { /* ignore */ });
-
-        if (v.readyState >= 2) {
-          tryPlay();
-        } else {
-          v.addEventListener('canplay', tryPlay, { once: true });
-        }
+        v.setAttribute('muted','');
+        v.setAttribute('playsinline','');
+        v.setAttribute('webkit-playsinline','');
       }
 
-      vids.forEach(armVideo);
+      function tryPlay(v){
+        v.play().catch(()=>{ /* ignore autoplay block */ });
+      }
 
-      // 첫 사용자 제스처에서 1회 더 재생 시도(절약모드/정책 예외 케이스 우회)
-      const onceTouch = () => {
-        vids.forEach(v => v.play().catch(()=>{}));
-        window.removeEventListener('touchstart', onceTouch);
-        window.removeEventListener('click', onceTouch);
+      // 보이는 영역에 들어오면 소스 로드(퍼포먼스 & 실패율↓)
+      const io = new IntersectionObserver((entries)=>{
+        entries.forEach(entry=>{
+          const v = entry.target;
+          if (entry.isIntersecting){
+            // 이미 로드된 경우 skip
+            if (!v.dataset.loaded){
+              // data-xxx에 있는 경로를 실제 source에 주입(경로 동기화 보장)
+              const mp4 = v.dataset.mp4, webm = v.dataset.webm;
+              const sources = v.querySelectorAll('source');
+              sources.forEach(s=>{
+                if (s.type.includes('webm') && webm) s.src = webm;
+                if (s.type.includes('mp4')  && mp4 ) s.src = mp4;
+              });
+              v.load();
+              v.dataset.loaded = '1';
+            }
+            if (v.readyState >= 2) tryPlay(v);
+            else v.addEventListener('canplay', ()=>tryPlay(v), { once:true });
+            io.unobserve(v);
+          }
+        });
+      }, { rootMargin: '200px 0px' });
+
+      vids.forEach(v=>{ prepare(v); io.observe(v); });
+
+      // 첫 사용자 제스처에서 전체 재시도
+      const onceGesture = () => {
+        vids.forEach(v=>tryPlay(v));
+        window.removeEventListener('touchstart', onceGesture);
+        window.removeEventListener('click', onceGesture);
       };
-      window.addEventListener('touchstart', onceTouch, { passive: true });
-      window.addEventListener('click', onceTouch);
+      window.addEventListener('touchstart', onceGesture, { passive:true });
+      window.addEventListener('click', onceGesture);
 
-      // 탭 전환 후 복귀 시 재생 보정
+      // 탭 복귀 시 재생 보정
       document.addEventListener('visibilitychange', () => {
-        if (!document.hidden) vids.forEach(v => v.play().catch(()=>{}));
+        if (!document.hidden) vids.forEach(v=>tryPlay(v));
       });
     })();
 
