@@ -6,6 +6,21 @@ html,body{
   height:auto;
   min-height:100%;
 }
+/* Custom Font: Broche Cut (limit to letters and digits to allow symbol fallback) */
+@font-face{
+  font-family:'Broche Cut';
+  src:url('./assets/Broche-Cut-Font/Broche Cut.otf') format('opentype'),
+      url('./assets/Broche-Cut-Font/Broche Cut.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  /* A–Z, a–z, 0–9 and space only. Symbols like &, ! fall back to next fonts */
+  unicode-range: U+0020, U+0030-0039, U+0041-005A, U+0061-007A;
+}
+/* Apply site-wide */
+body, button, input, select, textarea{
+  font-family: 'Broche Cut', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+}
 body{
   overflow-y:scroll;
   scroll-snap-type:y proximity; /* desktop/tablet only; disabled on mobile below */
