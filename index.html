@@ -12,7 +12,14 @@
   <!-- NAV -->
   <header class="nav">
     <div class="nav-inner">
-      <a href="#hero" class="logo">ALRD1</a>
+      <div class="logo">
+        <a href="https://www.instagram.com/alrd1_" target="_blank" class="insta-icon">
+          <i class="fab fa-instagram"></i>
+        </a>
+        <a href="#hero">ALRD1</a>
+      </div>
+      
+      
       <button class="menu-toggle" aria-label="Toggle navigation" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
@@ -20,15 +27,20 @@
         <a href="#hero">Home</a>
         <a href="#about">About Me</a>
         <a href="#quotes">Quotes</a>
-        <a href="https://www.instagram.com/alrd1_?igsh=MTU4aXpvMXV3bXBoeg==" target="_blank" class="social-nav">
-          <i class="fab fa-instagram"></i>
-        </a>
-        <a href="https://tiktok.com/@alrd1__" target="_blank" class="social-nav">
-          <i class="fab fa-tiktok"></i>
-        </a>
-        <a href="mailto:alrd1team@gmail.com" class="social-nav">
-          <i class="fas fa-envelope"></i>
-        </a>
+        <div class="nav-dropdown">
+          <a href="#contact" class="dropdown-trigger">Contact</a>
+          <div class="dropdown-menu">
+            <a href="https://www.instagram.com/alrd1_?igsh=MTU4aXpvMXV3bXBoeg==" target="_blank">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://tiktok.com/@alrd1__" target="_blank">
+              <i class="fab fa-tiktok"></i>
+            </a>
+            <a href="mailto:alrd1team@gmail.com">
+              <i class="fas fa-envelope"></i>
+            </a>
+          </div>
+        </div>
       </nav>
     </div>
   </header>
@@ -51,7 +63,7 @@
     </noscript>
     <div class="overlay">
       <h1>Welcome to ALRD1</h1>
-      <p>You Already Won. The Beat Starts Here 🎧</p>
+      <!-- <p>You Already Won. The Beat Starts Here 🎧</p> -->
       <a href="#quotes" class="btn">Get A Quote Now</a>
     </div>
   </section>
