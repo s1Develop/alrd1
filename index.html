@@ -18,10 +18,23 @@
       </button>
       <nav class="menu">
         <a href="#hero">Home</a>
-        <a href="#about">About Us</a>
+        <a href="#about">About Me</a>
         <a href="#reviews">Reviews</a>
         <a href="#quotes">Quotes</a>
-        <a href="#contact">Contact</a>
+        <div class="nav-dropdown">
+          <a href="#contact" class="dropdown-trigger">Contact</a>
+          <div class="dropdown-menu">
+            <a href="https://www.instagram.com/alrd1_?igsh=MTU4aXpvMXV3bXBoeg==" target="_blank">
+              <i class="fab fa-instagram"></i> Instagram
+            </a>
+            <a href="https://tiktok.com/@alrd1__" target="_blank">
+              <i class="fab fa-tiktok"></i> TikTok
+            </a>
+            <a href="mailto:alrd1team@gmail.com">
+              <i class="fas fa-envelope"></i> Email
+            </a>
+          </div>
+        </div>
       </nav>
     </div>
   </header>
@@ -38,12 +51,59 @@
     </div>
   </section>
 
+  <!-- 3개 영상 섹션 -->
+  <section class="video-sections">
+    <!-- Video Section 1 -->
+    <div class="video-section">
+      <video autoplay muted loop playsinline class="bg-video">
+        <source src="./assets/videos/2025_08_17 14_28_new.mp4" type="video/mp4"/>
+      </video>
+      <div class="video-overlay">
+        <div class="container">
+          <h2>ALRD1</h2>
+          <p>Vancouver's Premier DJ Experience</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Video Section 2 -->
+    <div class="video-section">
+      <video autoplay muted loop playsinline class="bg-video">
+        <source src="./assets/videos/2025_05_12 22_56.mp4" type="video/mp4"/>
+      </video>
+      <div class="video-overlay">
+        <div class="container">
+          <h2>Wedding & Events</h2>
+          <p>Creating Unforgettable Moments</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Video Section 3 -->
+    <div class="video-section">
+      <video autoplay muted loop playsinline class="bg-video">
+        <source src="./assets/videos/2025_08_17 14_34 (2)_1.mp4" type="video/mp4"/>
+      </video>
+      <div class="video-overlay">
+        <div class="container">
+          <h2>You Already Won</h2>
+          <p>The Beat Starts Here 🎧</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ABOUT -->
-  <section id="about" class="section section-content">
-    <div class="container">
-      <h2>About Us</h2>
-      <p>Wedding & Event DJ based in Vancouver. House, Hip-Hop, and everything in between — crafted for your moment.</p>
-      <a href="moreabout.html" class="btn">More About Us</a>
+  <section id="about" class="section section-content about-hero">
+    <video autoplay muted loop playsinline class="bg-video">
+      <source src="./assets/videos/20250816_220659_2_1.mp4" type="video/mp4"/>
+    </video>
+    <div class="overlay">
+      <div class="container">
+        <h2>About Me</h2>
+        <p>Wedding & Event DJ based in Vancouver. House, Hip-Hop, and everything in between — crafted for your moment.</p>
+        <a href="moreabout.html" class="btn">More About Me</a>
+      </div>
     </div>
   </section>
 
@@ -75,7 +135,7 @@
   <section id="quotes" class="section section-content">
     <div class="container">
       <h2>Get A Quote</h2>
-      <p>Tell us the date, location, vibe, and guest count. We’ll tailor the set & pricing.</p>
+      <p>Please complete the form below to get a quote.</p>
 
       <form class="quote-form" action="https://formsubmit.co/alrd1team@gmail.com" method="POST">
         <input type="hidden" name="_subject" value="New Quote Request from ALRD1" />
@@ -169,7 +229,7 @@
   <section id="contact" class="section section-alt">
     <div class="container">
       <h2>Contact</h2>
-      <p>Thanks for reaching out! We’ll get back to you shortly.</p>
+      <p>Thanks for choosing ALRD1! We’ll get back to you shortly.</p>
       <div class="socials">
         <a href="https://www.instagram.com/alrd1_?igsh=MTU4aXpvMXV3bXBoeg==" target="_blank" class="social"><i class="fab fa-instagram"></i></a>
         <a href="https://tiktok.com/@alrd1__"     target="_blank" class="social"><i class="fab fa-tiktok"></i></a>
