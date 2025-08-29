@@ -245,6 +245,16 @@
       toggleBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
     });
 
+    // 다른 부분 터치 시 메뉴 닫기
+    document.addEventListener('click', (e) => {
+      if (menu.classList.contains('open') && 
+          !menu.contains(e.target) && 
+          !toggleBtn.contains(e.target)) {
+        menu.classList.remove('open');
+        toggleBtn.setAttribute('aria-expanded', 'false');
+      }
+    });
+
     // Event Type Other 토글
     const eventType = document.getElementById('eventType');
     const eventTypeOther = document.getElementById('eventTypeOther');

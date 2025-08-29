@@ -169,8 +169,8 @@ select{width:100%;padding:12px 14px;border-radius:10px;border:none;background:#1
   body{scroll-snap-type:none;}
 
   .menu-toggle{display:block;}
-  .menu{position:absolute;top:var(--nav-h);left:0;right:0;background:rgba(0,0,0,.9);display:none;flex-direction:column;gap:0;padding:8px 0;}
-  .menu.open{display:flex;}
+  .menu{position:fixed;top:var(--nav-h);right:-300px;width:300px;background:rgba(0,0,0,.95);backdrop-filter:blur(10px);display:flex;flex-direction:column;gap:0;padding:8px 0;transition:right 0.3s ease;z-index:1000;}
+  .menu.open{right:0;}
   .menu a{margin:0;padding:14px 20px;border-top:1px solid rgba(255,255,255,.08);}
   
 
@@ -183,4 +183,10 @@ select{width:100%;padding:12px 14px;border-radius:10px;border:none;background:#1
   .review{grid-template-columns:1fr;grid-auto-rows:auto;text-align:left;}
   .review:nth-child(even){grid-template-columns:1fr;}
   .rev-photo{width:100%;height:auto;aspect-ratio:16/9;}
+
+  /* 모바일에서 3개 영상 섹션 세로 배치 */
+  .video-sections{height:auto;overflow:visible;}
+  .video-section{width:100%;height:33.333vh;float:none;margin-bottom:0;}
+  .video-section .video-overlay h2{font-size:clamp(20px,6vw,28px);}
+  .video-section .video-overlay p{font-size:clamp(14px,4vw,16px);}
 }
