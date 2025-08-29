@@ -55,15 +55,6 @@ p{opacity:.9;line-height:1.6;}
 .btn{display:inline-block;padding:.85rem 1.4rem;border-radius:999px;background:#ff0055;color:#fff;font-weight:800;text-decoration:none;transition:.25s;box-shadow:0 8px 24px rgba(255,0,85,.35);}
 .btn:hover{transform:translateY(-1px);}
 
-/*  Reviews
-.reviews-grid{display:grid;gap:28px;margin-top:20px;}
-.review{display:grid;grid-template-columns:160px 160px 1fr;align-items:center;gap:16px;background:rgba(255,255,255,.06);border-radius:16px;padding:16px;}
-.review:nth-child(even){grid-template-columns:1fr 160px 160px;}
-.rev-photo{width:160px;height:120px;object-fit:cover;border-radius:12px;}
-.rev-meta h3{margin-bottom:4px;}
-.stars{color:#ffd166;font-weight:800;letter-spacing:1px;}
-.rev-text{line-height:1.6;} */
-
 /* Quote */
 .quote-form{display:grid;gap:12px;margin-top:16px;}
 .quote-form input,
@@ -84,64 +75,57 @@ select{width:100%;padding:12px 14px;border-radius:10px;border:none;background:#1
 .social{display:flex;align-items:center;gap:8px;color:#eaeaea;text-decoration:none;background:#1b1d24;padding:10px 14px;border-radius:999px;}
 .social:hover{opacity:.9;}
 
-/* Contact 섹션만 높이 줄이기 */
+/* Contact 섹션만 높이 + 배경 */
 #contact.section {
   min-height: auto;
   padding: 80px 20px;
   display: block;
-  background: #fff;        /* 흰색 배경 */
-  color: #000;             /* 글씨는 검정 */
+  background: #fff;
+  color: #000;
 }
-#contact .container {
-  max-width: 700px;
-  margin: 0 auto;
-  text-align: center;
+#contact .container { max-width:700px; margin:0 auto; text-align:center; }
+#contact .socials .social { background:#f0f0f0; color:#000; }
+#contact .socials .social:hover { background:#ddd; opacity:1; }
+
+#contact h2{
+  margin-top: 40px;
 }
 
-#contact .socials .social {
-  background: #f0f0f0;     /* 아이콘 배경 밝게 */
-  color: #000;             /* 아이콘 색상 검정 */
-}
-
-#contact .socials .social:hover {
-  background: #ddd;        /* hover 시 회색 */
-  opacity: 1;
-}
-
-/* About Us 페이지 배경 영상 */
+/* About Me 배경 영상 */
 .about-hero{position:relative;overflow:hidden;background:transparent;}
 .about-hero .bg-video{
-  position:absolute;
-  inset:0;
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  z-index:0;
+  position:absolute; inset:0; width:100%; height:100%;
+  object-fit:cover; z-index:0;
 }
 .about-hero .overlay{
-  position:relative;
-  z-index:1;
-  width:100%;height:100%;
-  display:flex;align-items:center;justify-content:center;
+  position:relative; z-index:1; width:100%; height:100%;
+  display:flex; align-items:center; justify-content:center;
   background:linear-gradient(to bottom,rgba(0,0,0,.6),rgba(0,0,0,.6));
 }
 .about-hero .overlay .container{color:#fff;text-shadow:0 4px 12px rgba(0,0,0,.8);}
 .about-hero .overlay h2{color:#fff;}
 .about-hero .overlay p{color:#fff;opacity:.95;}
 
-/* More About Me 페이지 세로 연결 영상 */
-.video-section{position:relative;width:33.333vw;height:100vh;overflow:hidden;display:flex;align-items:center;justify-content:center;float:left;}
-.video-section .bg-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-1;}
-.video-section .video-overlay{width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:linear-gradient(to bottom,rgba(0,0,0,.5),rgba(0,0,0,.5));}
+/* ── 메인 페이지 3개 영상 섹션 (데스크톱) ───────────────────────── */
+.video-sections{width:100%;height:100vh;overflow:hidden;}
+.video-sections::after{content:"";display:table;clear:both;}
+.video-section{
+  position:relative; width:33.333vw; height:100vh; overflow:hidden;
+  display:flex; align-items:center; justify-content:center; float:left;
+}
+.video-section .bg-video{
+  position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:-1;
+}
+.video-section .video-overlay{
+  width:100%; height:100%;
+  display:flex; align-items:center; justify-content:center;
+  background:linear-gradient(to bottom,rgba(0,0,0,.5),rgba(0,0,0,.5));
+}
 .video-section .video-overlay .container{color:#fff;text-align:center;text-shadow:0 4px 12px rgba(0,0,0,.8);}
 .video-section .video-overlay h2{font-size:clamp(24px,4vw,40px);font-weight:900;margin-bottom:12px;color:#fff;}
 .video-section .video-overlay p{font-size:clamp(14px,1.8vw,18px);opacity:.95;color:#fff;margin-bottom:16px;}
 .video-section .video-overlay .btn{display:inline-block;padding:.7rem 1.2rem;border-radius:999px;background:#ff0055;color:#fff;font-weight:800;text-decoration:none;transition:.25s;box-shadow:0 6px 20px rgba(255,0,85,.35);font-size:14px;}
 .video-section .video-overlay .btn:hover{transform:translateY(-1px);}
-
-/* 메인 페이지 3개 영상 섹션 컨테이너 */
-.video-sections{width:100%;height:100vh;overflow:hidden;}
-.video-sections::after{content:"";display:table;clear:both;}
 
 /* Hero만 풀화면 채우도록 */
 .section.hero{min-height:calc(var(--vh)*100);}
@@ -160,33 +144,38 @@ select{width:100%;padding:12px 14px;border-radius:10px;border:none;background:#1
 
 /* 폼 같은 콘텐츠가 잘리지 않도록 여백 */
 .section-content .container,
-.section-alt .container{
-  padding-bottom:80px;
-}
+.section-alt .container{ padding-bottom:80px; }
 
-/* 반응형 */
+/* ── 모바일(≤768px): 각 영상이 세로로 한 화면 꽉 차게, 전체가 안 잘리게 ── */
 @media (max-width: 768px){
   body{scroll-snap-type:none;}
 
+  /* 슬라이드 인 메뉴 */
   .menu-toggle{display:block;}
-  .menu{position:fixed;top:var(--nav-h);right:-300px;width:300px;background:rgba(0,0,0,.95);backdrop-filter:blur(10px);display:flex;flex-direction:column;gap:0;padding:8px 0;transition:right 0.3s ease;z-index:1000;}
-  .menu.open{right:0;}
-  .menu a{margin:0;padding:14px 20px;border-top:1px solid rgba(255,255,255,.08);}
-  
+  .menu{
+    position:fixed; top:var(--nav-h); right:-300px; width:300px;
+    background:rgba(0,0,0,.95); backdrop-filter:blur(10px);
+    display:flex; flex-direction:column; gap:0; padding:8px 0;
+    transition:right .3s ease; z-index:1000;
+  }
+  .menu.open{ right:0; }
+  .menu a{ margin:0; padding:14px 20px; border-top:1px solid rgba(255,255,255,.08); }
 
-
-  .overlay{padding-top:calc(var(--nav-h) + 20px);} 
+  .overlay{padding-top:calc(var(--nav-h) + 20px);}
 
   .time-row{grid-template-columns:1fr;gap:8px;text-align:left;}
   .time-row span{grid-column:1;margin-bottom:4px;}
 
-  .review{grid-template-columns:1fr;grid-auto-rows:auto;text-align:left;}
-  .review:nth-child(even){grid-template-columns:1fr;}
-  .rev-photo{width:100%;height:auto;aspect-ratio:16/9;}
-
-  /* 모바일에서 3개 영상 섹션 세로 배치 */
-  .video-sections{height:auto;overflow:visible;}
-  .video-section{width:100%;height:33.333vh;float:none;margin-bottom:0;}
-  .video-section .video-overlay h2{font-size:clamp(20px,6vw,28px);}
+  /* 3개 영상: 세로 스택 + 각 섹션이 화면 높이 100% */
+  .video-sections{height:auto; overflow:visible;}
+  .video-section{
+    width:100%; height:100svh; float:none; margin:0;         /* 한 섹션 = 한 화면 */
+    scroll-snap-align:start; scroll-margin-top:var(--nav-h);
+  }
+  .video-section .bg-video{
+    object-fit:cover;                                       /* 상하 잘림 방지 (양옆 여백 허용) */
+    background:#000;                                          /* letterbox 영역 */
+  }
+  .video-section .video-overlay h2{font-size:clamp(22px,6vw,28px);}
   .video-section .video-overlay p{font-size:clamp(14px,4vw,16px);}
 }
