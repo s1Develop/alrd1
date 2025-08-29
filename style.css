@@ -93,17 +93,22 @@ select{width:100%;padding:12px 14px;border-radius:10px;border:none;background:#1
 /* Contact 섹션만 높이 + 배경 */
 #contact.section {
   min-height: auto;
-  padding: 80px 20px;
-  display: block;
+  padding: 15px 10px;   /* 위아래 여백 확 줄임 */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   background: #fff;
   color: #000;
 }
+
 #contact .container { max-width:700px; margin:0 auto; text-align:center; }
 #contact .socials .social { background:#f0f0f0; color:#000; }
 #contact .socials .social:hover { background:#ddd; opacity:1; }
 
-#contact h2{
-  margin-top: 40px;
+#contact h2 {
+  margin: 8px 0 0;   /* 위아래 여백 최소화 */
+  font-size: 1.5rem; /* 크기 살짝 줄이면 더 콤팩트해짐 */
 }
 
 /* About Me 배경 영상 */
