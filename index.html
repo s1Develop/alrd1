@@ -19,7 +19,6 @@
       <nav class="menu">
         <a href="#hero">Home</a>
         <a href="#about">About Me</a>
-        <!-- <a href="#reviews">Reviews</a> -->
         <a href="#quotes">Quotes</a>
         <a href="https://www.instagram.com/alrd1_?igsh=MTU4aXpvMXV3bXBoeg==" target="_blank" class="social-nav">
           <i class="fab fa-instagram"></i>
@@ -36,8 +35,15 @@
 
   <!-- HERO -->
   <section id="hero" class="section hero">
-    <video autoplay muted loop playsinline webkit-playsinline class="bg-video">
-      <source src="./assets/videos/background.mp4" type="video/mp4"/>
+    <video
+      class="bg-video"
+      autoplay muted loop playsinline webkit-playsinline
+      preload="metadata"
+      poster="./assets/posters/hero.jpg"
+    >
+      <!-- (선택) webm 소스: 있으면 유지, 없으면 이 줄 삭제 -->
+      <source src="./assets/videos/background.webm" type="video/webm"/>
+      <source src="./assets/videos/background.mp4"  type="video/mp4"/>
     </video>
     <div class="overlay">
       <h1>Welcome to ALRD1</h1>
@@ -50,8 +56,14 @@
   <section class="video-sections">
     <!-- Video Section 1 -->
     <div class="video-section">
-      <video autoplay muted loop playsinline webkit-playsinline class="bg-video">
-        <source src="./assets/videos/aboutme1.mp4" type="video/mp4"/>
+      <video
+        class="bg-video"
+        autoplay muted loop playsinline webkit-playsinline
+        preload="metadata"
+        poster="./assets/posters/aboutme1.jpg"
+      >
+        <source src="./assets/videos/aboutme1.webm" type="video/webm"/>
+        <source src="./assets/videos/aboutme1.mp4"  type="video/mp4"/>
       </video>
       <div class="video-overlay">
         <div class="container">
@@ -63,8 +75,14 @@
 
     <!-- Video Section 2 -->
     <div class="video-section">
-      <video autoplay muted loop playsinline webkit-playsinline class="bg-video">
-        <source src="./assets/videos/aboutme2.mp4" type="video/mp4"/>
+      <video
+        class="bg-video"
+        autoplay muted loop playsinline webkit-playsinline
+        preload="metadata"
+        poster="./assets/posters/aboutme2.jpg"
+      >
+        <source src="./assets/videos/aboutme2.webm" type="video/webm"/>
+        <source src="./assets/videos/aboutme2.mp4"  type="video/mp4"/>
       </video>
       <div class="video-overlay">
         <div class="container">
@@ -76,8 +94,14 @@
 
     <!-- Video Section 3 -->
     <div class="video-section">
-      <video autoplay muted loop playsinline webkit-playsinline class="bg-video">
-        <source src="./assets/videos/aboutme3.mp4" type="video/mp4"/>
+      <video
+        class="bg-video"
+        autoplay muted loop playsinline webkit-playsinline
+        preload="metadata"
+        poster="./assets/posters/aboutme3.jpg"
+      >
+        <source src="./assets/videos/aboutme3.webm" type="video/webm"/>
+        <source src="./assets/videos/aboutme3.mp4"  type="video/mp4"/>
       </video>
       <div class="video-overlay">
         <div class="container">
@@ -90,8 +114,14 @@
 
   <!-- ABOUT -->
   <section id="about" class="section section-content about-hero">
-    <video autoplay muted loop playsinline webkit-playsinline class="bg-video">
-      <source src="./assets/videos/20250816_220659_2_1.mp4" type="video/mp4"/>
+    <video
+      class="bg-video"
+      autoplay muted loop playsinline webkit-playsinline
+      preload="metadata"
+      poster="./assets/posters/about-hero.jpg"
+    >
+      <source src="./assets/videos/20250816_220659_2_1.webm" type="video/webm"/>
+      <source src="./assets/videos/20250816_220659_2_1.mp4"  type="video/mp4"/>
     </video>
     <div class="overlay">
       <div class="container">
@@ -102,31 +132,7 @@
     </div>
   </section>
 
-  <!-- -- REVIEWS (좌우 번갈아)
-  <section id="reviews" class="section section-alt">
-    <div class="container">
-      <h2>Reviews</h2>
-      <div class="reviews-grid">
-        <div class="review">
-          <img src="./assets/rev1.jpg" alt="review photo" class="rev-photo"/>
-          <div class="rev-meta"><h3>A.K.</h3><div class="stars">★★★★★</div></div>
-          <p class="rev-text">“Dance floor never emptied. Absolute pro.”</p>
-        </div>
-        <div class="review">
-          <p class="rev-text">“Perfect reads, perfect transitions.”</p>
-          <div class="rev-meta"><h3>J.P.</h3><div class="stars">★★★★★</div></div>
-          <img src="./assets/rev2.jpg" alt="review photo" class="rev-photo"/>
-        </div>
-        <div class="review">
-          <img src="./assets/rev3.jpg" alt="review photo" class="rev-photo"/>
-          <div class="rev-meta"><h3>S&M</h3><div class="stars">★★★★★</div></div>
-          <p class="rev-text">“Best night of our lives.”</p>
-        </div>
-      </div>
-    </div>
-  </section> -->
-
-  <!-- QUOTES (Formspree로 전송) -->
+  <!-- QUOTES -->
   <section id="quotes" class="section section-content">
     <div class="container">
       <h2>Get A Quote</h2>
@@ -137,12 +143,12 @@
         <input type="hidden" name="_captcha" value="false" />
 
         <!-- 기본 정보 -->
-        <input type="text"   name="name"     placeholder="Name" required />
-        <input type="email"  name="email"    placeholder="Email" required />
-        <input type="tel"    name="phone"    placeholder="Phone Number" required />
-        <input type="text"   name="location" placeholder="Location of Event" required />
+        <input type="text"   name="name"        placeholder="Name" required />
+        <input type="email"  name="email"       placeholder="Email" required />
+        <input type="tel"    name="phone"       placeholder="Phone Number" required />
+        <input type="text"   name="location"    placeholder="Location of Event" required />
         <input type="text"   name="postal_code" placeholder="Postal Code" required />
-        <input type="date"   name="date"     placeholder="Date of Event" required />
+        <input type="date"   name="date"        placeholder="Date of Event" required />
 
         <!-- 이벤트 시간 -->
         <label class="field-label">Event Time</label>
@@ -225,18 +231,52 @@
     <div class="container">
       <div class="socials">
         <a href="https://www.instagram.com/alrd1_?igsh=MTU4aXpvMXV3bXBoeg==" target="_blank" class="social"><i class="fab fa-instagram"></i></a>
-        <a href="https://tiktok.com/@alrd1__"     target="_blank" class="social"><i class="fab fa-tiktok"></i></a>
+        <a href="https://tiktok.com/@alrd1__" target="_blank" class="social"><i class="fab fa-tiktok"></i></a>
         <a href="mailto:alrd1team@gmail.com" target="_blank" class="social"><i class="fas fa-envelope"></i></a>
       </div>
       <h2>Thanks for choosing ALRD1!</h2>
-      
     </div>
   </section>
 
   <script>
-    // 더 이상 수동 100vh 보정 사용하지 않음 (100svh/100dvh로 대체)
+    // ======= Video autoplay hardening (모바일/정책 이슈 대비) =======
+    (function () {
+      const vids = document.querySelectorAll('video.bg-video');
 
-    // Mobile menu toggle
+      function armVideo(v) {
+        // 자동재생 허용 조건을 먼저 명시적으로 셋
+        v.muted = true;
+        v.setAttribute('muted', '');
+        v.setAttribute('playsinline', '');
+        v.setAttribute('webkit-playsinline', '');
+
+        const tryPlay = () => v.play().catch(() => { /* ignore */ });
+
+        if (v.readyState >= 2) {
+          tryPlay();
+        } else {
+          v.addEventListener('canplay', tryPlay, { once: true });
+        }
+      }
+
+      vids.forEach(armVideo);
+
+      // 첫 사용자 제스처에서 1회 더 재생 시도(절약모드/정책 예외 케이스 우회)
+      const onceTouch = () => {
+        vids.forEach(v => v.play().catch(()=>{}));
+        window.removeEventListener('touchstart', onceTouch);
+        window.removeEventListener('click', onceTouch);
+      };
+      window.addEventListener('touchstart', onceTouch, { passive: true });
+      window.addEventListener('click', onceTouch);
+
+      // 탭 전환 후 복귀 시 재생 보정
+      document.addEventListener('visibilitychange', () => {
+        if (!document.hidden) vids.forEach(v => v.play().catch(()=>{}));
+      });
+    })();
+
+    // ======= Mobile menu toggle =======
     const toggleBtn = document.querySelector('.menu-toggle');
     const menu = document.querySelector('.menu');
     toggleBtn.addEventListener('click', () => {
@@ -244,7 +284,6 @@
       toggleBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
     });
 
-    // 다른 부분 터치 시 메뉴 닫기
     document.addEventListener('click', (e) => {
       if (menu.classList.contains('open') && 
           !menu.contains(e.target) && 
@@ -254,30 +293,27 @@
       }
     });
 
-    // Event Type Other 토글
+    // ======= Quotes form validation =======
     const eventType = document.getElementById('eventType');
     const eventTypeOther = document.getElementById('eventTypeOther');
+    const otherCheck = document.getElementById('otherCheck');
+    const otherText = document.getElementById('otherText');
+    const quoteForm = document.querySelector('.quote-form');
+
     const updateEventTypeOther = () => {
       const isOther = eventType.value === 'other';
       eventTypeOther.style.display = isOther ? 'block' : 'none';
       eventTypeOther.required = isOther;
     };
-    updateEventTypeOther();
-    eventType.addEventListener('change', updateEventTypeOther);
-
-    // Parts Other 토글
-    const otherCheck = document.getElementById('otherCheck');
-    const otherText = document.getElementById('otherText');
     const updateOtherText = () => {
       const show = otherCheck.checked;
       otherText.style.display = show ? 'block' : 'none';
       otherText.required = show;
     };
+    updateEventTypeOther();
     updateOtherText();
+    eventType.addEventListener('change', updateEventTypeOther);
     otherCheck.addEventListener('change', updateOtherText);
-
-    // 최소 하나의 parts 선택 검사 + 폼 에러 하이라이트
-    const quoteForm = document.querySelector('.quote-form');
 
     const showError = (el, msg) => {
       el.classList.add('field-error');
@@ -289,14 +325,11 @@
       }
       msgEl.textContent = msg;
     };
-
     const clearError = (el) => {
       el.classList.remove('field-error');
       const msgEl = el.parentElement.querySelector('.error-text');
       if(msgEl){ msgEl.remove(); }
     };
-
-    // 입력 변경 시 에러 제거
     quoteForm.querySelectorAll('input, select, textarea').forEach((el) => {
       el.addEventListener('input', () => clearError(el));
       el.addEventListener('change', () => clearError(el));
@@ -304,8 +337,6 @@
 
     quoteForm.addEventListener('submit', (e) => {
       let valid = true;
-
-      // required 기본 필드
       const requiredSelectors = [
         'input[name="name"]',
         'input[name="email"]',
@@ -322,7 +353,6 @@
         'input[name="guests"]',
         'select[name="event_type"]'
       ];
-
       requiredSelectors.forEach((sel) => {
         const el = quoteForm.querySelector(sel);
         if(el && !el.value){
@@ -331,17 +361,14 @@
         }
       });
 
-      // Event Type Other
       if(eventType.value === 'other' && !eventTypeOther.value){
         valid = false;
         showError(eventTypeOther, 'Please specify the event type.');
       }
 
-      // Parts 최소 1개
       const checkedParts = quoteForm.querySelectorAll('input[name="parts"]:checked');
       if(checkedParts.length === 0){
         valid = false;
-        // Parts 섹션 전체에 에러 메시지 표시
         const partsSection = quoteForm.querySelector('.checks');
         if(partsSection){
           let msgEl = partsSection.parentElement.querySelector('.error-text');
@@ -354,27 +381,12 @@
         }
       }
 
-      // Parts Other
       if(otherCheck.checked && !otherText.value){
         valid = false;
         showError(otherText, 'Please specify other parts.');
       }
 
       if(!valid){ e.preventDefault(); }
-    });
-
-    // Parts 체크박스 변경 시 에러 메시지 제거
-    quoteForm.querySelectorAll('input[name="parts"]').forEach((checkbox) => {
-      checkbox.addEventListener('change', () => {
-        const checkedParts = quoteForm.querySelectorAll('input[name="parts"]:checked');
-        if(checkedParts.length > 0){
-          const partsSection = quoteForm.querySelector('.checks');
-          if(partsSection){
-            const msgEl = partsSection.parentElement.querySelector('.error-text');
-            if(msgEl){ msgEl.remove(); }
-          }
-        }
-      });
     });
   </script>
 </body>
